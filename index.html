@@ -39,6 +39,10 @@
       code.className = "language-markup";
       Prism.highlightElement(code);
     });
+    
+    [].forEach.call(readme.querySelectorAll("a"), function(a) {
+      a.href = a.href.replace(/https?:\/\/vaadin.github.io\/components-examples\//,'');
+    })
 
   </script>
 
