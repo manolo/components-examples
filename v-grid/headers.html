@@ -337,7 +337,7 @@
           }, initialValue);
         }
 
-        window.addEventListener("WebComponentsReady", function() {
+        HTMLImports.whenReady(function() {
           grid.data.source = employees;
 
           // code
