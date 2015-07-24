@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>v-grid Comparative</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../demo.css">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="common.html">
+  
+  <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+  <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+  <link rel="import" href="../bower_components/iron-list/iron-list.html">
+  
+</head>
+
+<body>
+
+  <section>
+    <h1><a href="./">v-grid</a>
+      <span>Comparative</span>
+    </h1>
+    <table-of-contents select="h3" class="toc"></table-of-contents>
+  </section>
+
+  <section>
+    <h3>v-grid vs iron-list</h3>
+    <p>Data fetched dynamically using <code>iron-ajax</code> and hooked to a <code>v-grid</code> and a <code>iron-list</code>.</p>
+
+    <div style="display: flex; position: relative">
+      <dom-module demo id="my-app">
+        <style>
+          .d1 {
+            @apply(--layout-fit);
+            @apply(--layout-horizontal);
+            position: relative;
+            max-width: 80%;
+          }
+          .d2, .d3 {
+            @apply(--layout-flex);
+            @apply(--layout-horizontal);
+            width: 50%;
+            height: 600px;
+            border: 1px solid #e3e3e3;
+          }
+          v-grid {
+             width: calc(50% - 2px);
+             height: 600px;
+             position: absolute;
+          }
+          #list {
+             @apply(--layout-flex);
+          }
+          .item {
+             padding-left: 12px;
+             padding-top: 14px;
+             @apply(--layout-horizontal);
+             font-size: 13px;
+             height: 33px;
+           }
+          .pad {
+            @apply(--layout-flex);
+            @apply(--layout-vertical);
+          }
+          .border {
+            border-bottom: 1px solid #e3e3e3;
+          }
+          .zero, .one, .two, .three {
+             width: 25%;
+             overflow: hidden;
+             display: inline-block;
+             white-space: nowrap;
+          }
+          .zero {
+             width: 30px;
+          }    
+      </style>
+
+      <template>
+        <iron-ajax url="demodata.json" last-response="{{data}}" auto></iron-ajax>
+        <div class="d1">
+          <div class="d2">
+            <v-grid id='grid' items="[[data]]">
+             <table>
+              <thead></thead>
+              <col header-text="Name">
+              <col header-text="Value">
+              <col header-text="Progress">
+              <tbody>
+              </tbody>
+             </table>
+            </v-grid>          
+          </div>
+          <div class="d3">
+            <iron-list id="list" items="[[data]]" as="item">
+              <template>
+                <div>
+                  <div class="item">
+                    <div class="pad">
+                      <div>
+                        <div class='one'>[[item.0]]</div>
+                        <div class='two'>[[item.1]]</div>
+                        <div class='three'>[[item.2]]</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border"></div>
+                </div>
+              </template>
+            </iron-list>
+         </div>
+      </template>
+    </dom-module>
+    
+    <script>
+      HTMLImports.whenReady(function() {
+       Polymer({
+        is: 'my-app',
+        ready: function() {
+          this.$.grid.header.hidden = true;
+        }
+       });
+      });
+    </script>
+  
+    <my-app></my-app>
+  
+   </div>
+    
+  </section>
+
+</body>
+
+</html>

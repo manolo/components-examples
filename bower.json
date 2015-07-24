@@ -14,7 +14,10 @@
     "bower_components"
   ],
   "dependencies": {
-    "vaadin-components": "vaadin-components#0.3.0-beta5",
+    "vaadin-components": "vaadin-components#mcm_startup",
+    "iron-ajax": "polymerelements/iron-ajax",
+    "iron-list": "polymerelements/iron-list",
+    "iron-flex-layout": "polymerelements/iron-flex-layout",
     "code-example": "~0.0.13",
     "table-of-contents": "~0.0.2",
     "marked": "~0.3.3"
